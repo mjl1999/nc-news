@@ -5,13 +5,16 @@ import ArticleCard from '../components/ArticleCard'
 
 const News = () => {
     const [articles, setArticles] = useState(null)
+    const [loading, setLoading] = useState(true)
     useEffect(()=> {
+        setLoading(true)
         getArticles().then((data) => {
               setArticles(data);
+              setLoading(false)
           });
 
     }, [])
-    if (articles === null) {
+    if (loading) {
         return (<h2>Loading</h2>)
     }
 
