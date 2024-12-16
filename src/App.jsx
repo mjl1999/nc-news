@@ -7,6 +7,7 @@ import News from './pages/News'
 import Profile from './pages/Profile'
 import Users from './pages/Users'
 import Favourites from './pages/Favourites'
+import ReadArticle from './pages/ReadArticle'
 import NavBar from './components/NavBar'
 function App() {
 
@@ -17,7 +18,8 @@ function App() {
     <Routes>
         <Route index element={<Home />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/news" element={<News />} /> 
+        <Route path="/news" element={<News />} />
+        <Route path="/articles/:articleId" element={< ReadArticle/>} /> 
         <Route path="/profile" element={<Profile />} />
         <Route path="/favourites" element={<Favourites />} />
         <Route path="/users" element={<Users />} />

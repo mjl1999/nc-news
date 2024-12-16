@@ -2,6 +2,21 @@ body, html {
   margin: 0;
   padding: 0;
   background-color: rgb(250, 250, 250);
+  padding-bottom: 50px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 40px;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 34px;
+  color: #eeeeee;
+  background-color: #ca1212;
+  text-align: center;
+  padding: 5px 0;
+  margin-top: 0;
 }
 
 nav {
@@ -19,18 +34,7 @@ nav ul {
   outline: none;
 }
 
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 34px;
-  color: #eeeeee;
-  background-color: #ca1212;
-  text-align: center;
-  padding: 5px 0;
-  margin-top: 0;
-}
+
 
 i {
   color: white;
@@ -103,4 +107,7 @@ i:focus, i:active {
   margin: 10px 0;
 }
 
-
+a {
+  text-decoration: none; 
+  color: inherit; /* Keeps the color same as surrounding text */
+}
