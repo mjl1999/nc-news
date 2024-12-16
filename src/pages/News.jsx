@@ -7,15 +7,18 @@ const News = () => {
     const [articles, setArticles] = useState(null)
     const [loading, setLoading] = useState(true)
     useEffect(()=> {
-        setLoading(true)
         getArticles().then((data) => {
+                setLoading(false)
               setArticles(data);
-              setLoading(false)
           });
 
     }, [])
-    if (loading) {
-        return (<h2>Loading</h2>)
+    if (loading === true || articles === null) {
+        const margins={
+            marginTop: 100,
+            textAlign: "center"
+        }
+        return <h2 style={margins}>Loading...</h2>
     }
 
     return (
