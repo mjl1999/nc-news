@@ -109,5 +109,5 @@ i:focus, i:active {
 
 a {
   text-decoration: none; 
-  color: inherit; /* Keeps the color same as surrounding text */
+  color: inherit;
 }
