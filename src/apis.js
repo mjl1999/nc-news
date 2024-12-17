@@ -21,4 +21,12 @@ const getCommentsByArticleId= (id) => {
     return response.data.allArticleComments;
 });
 }
-export {getArticles, getArticlesById, getCommentsByArticleId}
+
+
+const updateArticleVotes = (articleId, vote) => {
+  return api.patch(`/api/articles/${articleId}`, {"inc_votes": vote}).then((response) => {
+    console.log(response)
+});
+}
+
+export {getArticles, getArticlesById, getCommentsByArticleId, updateArticleVotes}

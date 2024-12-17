@@ -2,7 +2,7 @@ import React from 'react'
 import { useParams } from 'react-router-dom'
 import CommentCard from '../components/CommentCard'
 import { useEffect, useState } from 'react'
-import { getArticlesById, getCommentsByArticleId } from '../apis'
+import { getArticlesById, getCommentsByArticleId, updateArticleVotes } from '../apis'
 
 
 const ReadArticle = () => {
@@ -15,7 +15,10 @@ const ReadArticle = () => {
     const [comments, setComments] = useState(null)
     const [showComments, setShowComments] = useState(false)
     const [buttonText, setButtonText] = useState("Show Comments")
+    const [voteUp, setVoteUp] = useState(0)
+    const [voteDown, setVoteDown] = useState(0)
     const {articleId} = useParams()
+
 
     function changeShowComments(e) {
         e.preventDefault()
@@ -42,8 +45,31 @@ const ReadArticle = () => {
         }
     }, [])
 
+
     if (article === null) {
         return (<h2>Loading</h2>)
+    }
+
+    function increaseVote() {
+        updateArticleVotes(Number(articleId), +1).catch(()=> {
+            setVoteUp((prev)=> {
+                return prev - 1
+            })
+        })
+        setVoteUp((prev)=> {
+            return prev + 1
+        })
+    }
+
+    function decreaseVote() {
+        updateArticleVotes(Number(articleId), -1).catch(()=> {
+            setVoteDown((prev)=> {
+                return prev + 1
+            })
+        })
+        setVoteDown((prev)=> {
+            return prev - 1
+        })
     }
 
     return (
@@ -52,7 +78,8 @@ const ReadArticle = () => {
             <h3>Topic: {article.topic}</h3>
             <h2>{article.title}</h2>
             <h2>By {article.author}</h2>
-            <p>{<i className="fa-solid fa-thumbs-up" id="thumbs"></i>}{article.votes}</p>
+            <p>User Votes: {article.votes + voteUp + voteDown}</p>
+            <p><i className="fa-solid fa-thumbs-down" id="thumbs" onClick={decreaseVote}></i><i className="fa-solid fa-thumbs-up" id="thumbs" onClick={increaseVote}></i></p>
             <img src={article.article_img_url}/>
             <p>{article.body}</p>
             <p>Comments: {article.comment_count}</p>
