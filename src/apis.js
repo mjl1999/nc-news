@@ -6,16 +6,19 @@ const api = axios.create({
 
 const getArticles = () => {
     return api.get("/api/articles").then((response) => {
-        console.log(response.data.allArticles)
         return response.data.allArticles;
     });
   };
 
 const getArticlesById = (id) => {
     return api.get(`/api/articles/${id}`).then((response) => {
-        console.log(response.data)
         return response.data.chosenArticle;
     });
   };
 
-export {getArticles, getArticlesById}
+const getCommentsByArticleId= (id) => {
+  return api.get(`/api/articles/${id}/comments`).then((response) => {
+    return response.data.allArticleComments;
+});
+}
+export {getArticles, getArticlesById, getCommentsByArticleId}
