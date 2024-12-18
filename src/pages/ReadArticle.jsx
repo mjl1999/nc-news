@@ -48,16 +48,18 @@ const ReadArticle = () => {
 
     function postComment(e) {
         e.preventDefault()
-        if (newComment.trim()) {
-            const commentToPost = {"username": "tickle122", "body": newComment,}
+        const newCommentCopy = newComment
+        setNewComment("")
+        if (newCommentCopy.trim()) {
+            const commentToPost = {"username": "tickle122", "body": newCommentCopy}
             postArticleComment(Number(articleId), commentToPost)
             .then((postedComment)=> {
                 setComments((prev)=> {return [postedComment, ...prev]})
-                setNewComment("")
             }
             )
             .catch((error) => {
                 alert("Unable to post comment please try again")
+                setNewComment(newCommentCopy)
             })
         }
     }
