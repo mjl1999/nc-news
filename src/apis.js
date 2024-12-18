@@ -24,9 +24,14 @@ const getCommentsByArticleId= (id) => {
 
 
 const updateArticleVotes = (articleId, vote) => {
-  return api.patch(`/api/articles/${articleId}`, {"inc_votes": vote}).then((response) => {
-    console.log(response)
-});
+  return api.patch(`/api/articles/${articleId}`, {"inc_votes": vote})
 }
 
-export {getArticles, getArticlesById, getCommentsByArticleId, updateArticleVotes}
+const postArticleComment = (articleId, comment) => {
+  console.log(comment, "here is the comment", articleId, "here is the articleId", typeof articleId, "here is the type of the article ID")
+  return api.post(`/api/articles/${articleId}/comments`, comment).then((response)=> {
+    return response.data.userComment
+  })
+}
+
+export {getArticles, getArticlesById, getCommentsByArticleId, updateArticleVotes, postArticleComment}
