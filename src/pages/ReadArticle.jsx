@@ -21,7 +21,7 @@ const ReadArticle = () => {
             prevComments.filter((comment) => comment.comment_id !== deletedCommentId)
         );
     }
-    
+
     function changeShowComments(e) {
         e.preventDefault()
         setShowComments(!showComments)
@@ -100,8 +100,8 @@ const ReadArticle = () => {
             <h2>By {article.author}</h2>
             <p>User Votes: {article.votes + voteUp + voteDown}</p>
             <p><i className="fa-solid fa-thumbs-up" id="thumbs" onClick={increaseVote}></i><i className="fa-solid fa-thumbs-down" id="thumbs" onClick={decreaseVote}></i></p>
-            <img src={article.article_img_url}/>
-            <p>{article.body}</p>
+            <img style={{height: "400px", width:"600px"}}src={article.article_img_url}/>
+            <p style={{textAlign: "justify", marginLeft: "35px", marginRight: "35px", lineHeight: "40px", fontSize: "20px"}}>{article.body}</p>
             <p>Comments: {article.comment_count}</p>
             
             <form onSubmit={postComment}>

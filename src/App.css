@@ -15,7 +15,7 @@ header {
   color: #eeeeee;
   background-color: #ca1212;
   text-align: center;
-  padding: 5px 0;
+  padding: 3px 0;
   margin-top: 0;
 }
 
@@ -76,7 +76,7 @@ i:focus, i:active {
   gap: 15px; 
   padding: 10px;
   margin-bottom: 80px;
-  margin-top: 80px;
+  margin-top: 16px;
 }
 
 .article-card {
