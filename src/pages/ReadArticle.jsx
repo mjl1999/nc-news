@@ -22,8 +22,7 @@ const ReadArticle = () => {
         );
     }
 
-    function changeShowComments(e) {
-        e.preventDefault()
+    function changeShowComments() {
         setShowComments(!showComments)
         if (buttonText === "Show Comments") {
             setButtonText("Hide Comments")
@@ -61,6 +60,7 @@ const ReadArticle = () => {
             postArticleComment(Number(articleId), commentToPost)
             .then((postedComment)=> {
                 setComments((prev)=> {return [postedComment, ...prev]})
+                changeShowComments()
             }
             )
             .catch((error) => {
