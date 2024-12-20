@@ -1,16 +1,23 @@
 import React from 'react'
 import { deleteArticleComment } from '../apis'
+import { useState } from 'react'
 
 const CommentCard = ({articleComment, commentId, onDeleteComment }) => {
+
+    const [isDeleting, setIsDeleting] = useState(false)
+
     function deleteComment(e) {
       e.preventDefault
-      console.log(commentId)
-      deleteArticleComment(Number(commentId)).then((response)=> {
-        console.log("successful deletion with response", response)
+      if (isDeleting) {
+        return alert("Already deleting comment, please wait")
+      }
+      setIsDeleting(true)
+      deleteArticleComment(commentId).then((response)=> {
         onDeleteComment(commentId)
+        setIsDeleting(false)
       }).catch((err)=> {
-        console.log("ERROR:", err)
-        alert("Error deleting comment. Please try again")
+        setIsDeleting(false)
+        alert("Error deleting comment. Please try again later")
       }
 
       )
