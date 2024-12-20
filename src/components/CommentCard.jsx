@@ -1,13 +1,13 @@
 import React from 'react'
 import { deleteArticleComment } from '../apis'
 
-const CommentCard = ({articleComment, commentId}) => {
-
+const CommentCard = ({articleComment, commentId, onDeleteComment }) => {
     function deleteComment(e) {
       e.preventDefault
       console.log(commentId)
       deleteArticleComment(Number(commentId)).then((response)=> {
         console.log("successful deletion with response", response)
+        onDeleteComment(commentId)
       }).catch((err)=> {
         console.log("ERROR:", err)
         alert("Error deleting comment. Please try again")

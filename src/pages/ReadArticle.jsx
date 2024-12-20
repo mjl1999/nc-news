@@ -16,6 +16,12 @@ const ReadArticle = () => {
     const [newComment, setNewComment] = useState('');
     const maxCharacters = 1000;
 
+    function handleDeleteComment(deletedCommentId) {
+        setComments((prevComments) => 
+            prevComments.filter((comment) => comment.comment_id !== deletedCommentId)
+        );
+    }
+    
     function changeShowComments(e) {
         e.preventDefault()
         setShowComments(!showComments)
@@ -39,7 +45,7 @@ const ReadArticle = () => {
         else {
             return (<h2>Invalid Id</h2>)
         }
-    }, [comments])
+    }, [])
 
 
     if (article === null) {
@@ -118,7 +124,8 @@ const ReadArticle = () => {
 
             <button onClick={changeShowComments} style={{ padding: '10px 15px', marginTop:"40px"}}>{buttonText}</button>
             {showComments && comments ? (comments.map((comment)=> {
-                return <CommentCard key={comment.comment_id} commentId={comment.comment_id} articleComment={comment}/>
+                return <CommentCard key={comment.comment_id} commentId={comment.comment_id} articleComment={comment}
+                onDeleteComment={handleDeleteComment}/>
             })): null}
         </div>
     )
