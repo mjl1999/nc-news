@@ -39,7 +39,7 @@ const ReadArticle = () => {
         else {
             return (<h2>Invalid Id</h2>)
         }
-    }, [])
+    }, [comments])
 
 
     if (article === null) {
@@ -118,7 +118,7 @@ const ReadArticle = () => {
 
             <button onClick={changeShowComments} style={{ padding: '10px 15px', marginTop:"40px"}}>{buttonText}</button>
             {showComments && comments ? (comments.map((comment)=> {
-                return <CommentCard key={comment.comment_id} articleComment={comment}/>
+                return <CommentCard key={comment.comment_id} commentId={comment.comment_id} articleComment={comment}/>
             })): null}
         </div>
     )

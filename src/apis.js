@@ -33,4 +33,10 @@ const postArticleComment = (articleId, comment) => {
   })
 }
 
-export {getArticles, getArticlesById, getCommentsByArticleId, updateArticleVotes, postArticleComment}
+const deleteArticleComment = (commentId) => {
+  return api.delete(`/api/comments/${commentId}`).then((response)=> {
+    console.log(response, "has been deleted")
+  })
+}
+
+export {getArticles, getArticlesById, getCommentsByArticleId, updateArticleVotes, postArticleComment, deleteArticleComment}
