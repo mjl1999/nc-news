@@ -47,6 +47,19 @@ i {
   outline: none;
 }
 
+.comment-box {
+  text-align: left;
+  margin-top: 15px;
+  padding: 5px;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-color: #eeeeee;
+  border: 1px solid black;
+  max-height: 150px; /* Set a max height for the comment box */
+  overflow-y: auto;  /* Allow vertical scrolling if content overflows */
+  word-wrap: break-word; /* Ensure long words wrap within the box */
+}
+
 .errorMessage {
   position: absolute;
   top: 50%;

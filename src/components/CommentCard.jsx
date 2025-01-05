@@ -23,16 +23,9 @@ const CommentCard = ({articleComment, commentId, onDeleteComment }) => {
       )
 
     }
-    const styles = {textAlign: "left",
-        marginTop: "15px",
-        padding: "5px",
-        marginLeft: "10px",
-        marginRight: "10px",
-        backgroundColor: "#eeeeee",
-        border: "1px solid black"
-    }
+ 
   return (
-    <div style={styles}>
+    <div className='comment-box'>
         <h4>Posted by: {articleComment.author} | Date Commented: {articleComment.created_at.split("T")[0]} | Likes: {articleComment.votes}</h4>
         <p>{articleComment.body}</p>
          {articleComment.author === "tickle122" ? <button onClick={deleteComment}>Delete</button> : null}
