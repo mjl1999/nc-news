@@ -7,6 +7,8 @@ import { getArticlesById, getCommentsByArticleId, updateArticleVotes, postArticl
 
 const ReadArticle = () => {
     const [article, setArticle] = useState(null)
+    const [hasBeenLiked, setHasBeenLiked] = useState(false)
+    const [hasBeenDisliked, setHasBeenDisliked] = useState(false)
     const [comments, setComments] = useState(null)
     const [showComments, setShowComments] = useState(false)
     const [buttonText, setButtonText] = useState("Show Comments")
@@ -71,25 +73,34 @@ const ReadArticle = () => {
     }
 
     function increaseVote() {
-        updateArticleVotes(Number(articleId), +1).catch(()=> {
-            setVoteUp((prev)=> {
-                return prev - 1
-            })
-        })
-        setVoteUp((prev)=> {
-            return prev + 1
-        })
-    }
 
-    function decreaseVote() {
-        updateArticleVotes(Number(articleId), -1).catch(()=> {
-            setVoteDown((prev)=> {
+        if (!hasBeenLiked) {
+            setHasBeenLiked(true)
+            setHasBeenDisliked(false)
+            updateArticleVotes(Number(articleId), +1).catch(()=> {
+                setVoteUp((prev)=> {
+                    return prev - 1
+                })
+            })
+            setVoteUp((prev)=> {
                 return prev + 1
             })
-        })
-        setVoteDown((prev)=> {
-            return prev - 1
-        })
+        }
+        }
+
+    function decreaseVote() {
+        if (!hasBeenDisliked) {
+            setHasBeenLiked(false)
+            setHasBeenDisliked(true) 
+            updateArticleVotes(Number(articleId), -1).catch(()=> {
+                setVoteDown((prev)=> {
+                    return prev + 1
+                })
+            })
+            setVoteDown((prev)=> {
+                return prev - 1
+            })
+        }
     }
 
     return (
