@@ -14,6 +14,7 @@ function App() {
     <Header />
     <Routes>
         <Route index element={<News />} />
+        <Route path="/" element={<News />} />
         <Route path="/news" element={<News />} />
         <Route path="/news/:category" element={<News />} />
         <Route path="/articles/:articleId" element={< ReadArticle/>} /> 
