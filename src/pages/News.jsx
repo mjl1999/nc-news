@@ -7,12 +7,14 @@ import ArticleCard from '../components/ArticleCard'
 const News = () => {
   const [articles, setArticles] = useState(null)
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const { category } = useParams()  
   useEffect(() => {
     setLoading(true); 
+    setError(null)
+
     getArticles().then((data) => {
       setLoading(false);
-      
       if (category) {
         const filteredArticles = data.filter((article) => article.topic === category);
         setArticles(filteredArticles);
@@ -21,6 +23,7 @@ const News = () => {
       }
     }).catch((err) => {
       setLoading(false);
+      setError('Failed to load articles. Please try again.')
     });
   }, [category]);
 
@@ -30,6 +33,15 @@ const News = () => {
       textAlign: "center",
     };
     return <h2 style={margins}>Loading...</h2>;
+  }
+
+  if (error) {
+    const margins = {
+      marginTop: 100,
+      textAlign: 'center',
+      color: 'red',
+    };
+    return <h2 style={margins}>{error}</h2>;
   }
 
   return (
