@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const Header = () => {
   return (
-    <Link to="/home"><header>North News</header></Link>
+    <Link to="/"><header>North News</header></Link>
   )
 }
 
