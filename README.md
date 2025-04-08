@@ -1,2 +1,1 @@
-deployed at: https://therealnorthnews.netlify.app/news 
-
+deployed at: https://therealnorthnews.netlify.app/news/football
